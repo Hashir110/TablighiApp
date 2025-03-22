@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "MyNewProject",
+    "name": "TablighiDataApp",
     "slug": "MyNewProject",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.salman_shaikh.MyNewProject"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f2fda0c3-a6d7-4d09-9c8b-a8dd2aec8bed"
+      }
     }
   }
 }
