@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
@@ -25,7 +26,7 @@ const SathMahiny = () => {
 
     try {
       // Save to Firestore
-      await addDoc(collection(db, "saalAndroon"), {
+      await addDoc(collection(db, "sathMahinayBeroon"), {
         name,
         masjidName,
         year,
@@ -49,7 +50,7 @@ const SathMahiny = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.heading}>ساتھ مہینے فارم</Text>
 
       <TextInput
@@ -77,16 +78,16 @@ const SathMahiny = () => {
         value={time}
         onChangeText={setTime}
       />
- <TextInput
-              style={styles.input}
-              placeholder="تشکیل"
-              value={tashkeel}
-              onChangeText={setTashkeel}
-            />
+      <TextInput
+        style={styles.input}
+        placeholder="تشکیل"
+        value={tashkeel}
+        onChangeText={setTashkeel}
+      />
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>جمع کریں</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

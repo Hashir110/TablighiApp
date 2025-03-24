@@ -35,9 +35,9 @@ const Login = ({ navigation }) => {
 
       // Check for admin credentials
       if (email === "admin@gmail.com" && password === "admin123") {
-        navigation.replace("AdminScreen");
-      } else {
         navigation.replace("Home");
+      } else {
+        navigation.replace("AdminScreen");
       }
     } catch (error) {
       console.error(error);

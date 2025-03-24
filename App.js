@@ -20,8 +20,11 @@ import teenMahinyBeroon from "./src/components/screensMastoraat/teenMahinyBeroon
 import Login from "./src/auth/login";
 
 import ViewSaalAndroon from "./src/components/screensMardData/viewSaalAndroon";
+
 import SplashScreen from "./src/components/splashScreen";
 import AdminScreen from "./src/auth/admin";
+import view7MahinayBeroon from "./src/components/screensMardData/view7MahinayBeroon";
+import form from "./src/components/addDataForm/form";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -99,8 +102,18 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name="form"
+            component={form}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name="ViewSaalAndroon"
             component={ViewSaalAndroon}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="view7MahinayBeroon"
+            component={view7MahinayBeroon}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

@@ -1,89 +1,61 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Home = ({ navigation }) => {
+  const handleLogout = () => {
+    console.log("User logged out");
+    navigation.replace("Login");
+  };
+
   return (
-    <View style={styles.container}>
-      {/* Heading for Men */}
+    <ScrollView style={styles.container}>
+      {/* Logout Button */}
+      <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
+        <MaterialIcons name="logout" size={20} color="white" />
+        <Text style={styles.logoutText}>Logout</Text>
+      </TouchableOpacity>
+
+      {/* Men's Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>مردوں کے لیے</Text>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Sehroza")}
-        >
-          <Text style={styles.buttonText}>سہ روزہ والے احباب</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Ijtima")}
-        >
-          <Text style={styles.buttonText}>اجتماع</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Chilla")}
-        >
-          <Text style={styles.buttonText}>چِلّے والے احباب</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("CharMahinay")}
-        >
-          <Text style={styles.buttonText}>چار مہینے والے احباب</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("SathMahinay")}
-        >
-          <Text style={styles.buttonText}>سات مہینے بیرون والے احباب</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("SaalAndroon")}
-        >
-          <Text style={styles.buttonText}>سال اندرون والے احباب</Text>
-        </TouchableOpacity>
+        {[
+          { label: "سہ روزہ والے احباب", route: "Sehroza" },
+          { label: "اجتماع", route: "Ijtima" },
+          { label: "چِلّے والے احباب", route: "Chilla" },
+          { label: "چار مہینے والے احباب", route: "CharMahinay" },
+          { label: "سات مہینے بیرون والے احباب", route: "SathMahinay" },
+          { label: "سال اندرون والے احباب", route: "SaalAndroon" },
+        ].map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.button}
+            onPress={() => navigation.navigate(item.route)}
+          >
+            <Text style={styles.buttonText}>{item.label}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
 
-      {/* Heading for Women */}
+      {/* Women's Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>مستورات کے لیے</Text>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("TeenDin")}
-        >
-          <Text style={styles.buttonText}>۳ دن مستورات</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("PandraDin")}
-        >
-          <Text style={styles.buttonText}>۱۵ دن مستورات</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("ChalisDin")}
-        >
-          <Text style={styles.buttonText}>۴۰ دن مستورات</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("TeenMahinayBeroon")}
-        >
-          <Text style={styles.buttonText}>۳ مہینے مستورات</Text>
-        </TouchableOpacity>
+        {[
+          { label: "۳ دن مستورات", route: "TeenDin" },
+          { label: "۱۵ دن مستورات", route: "PandraDin" },
+          { label: "۴۰ دن مستورات", route: "ChalisDin" },
+          { label: "۳ مہینے مستورات", route: "TeenMahinayBeroon" },
+        ].map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.button}
+            onPress={() => navigation.navigate(item.route)}
+          >
+            <Text style={styles.buttonText}>{item.label}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -92,43 +64,61 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f4f4f9",
     padding: 20,
+  },
+  logoutButton: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
+    alignSelf: "flex-end",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: "#e74c3c",
+    borderRadius: 8,
+    marginBottom: 15,
+    shadowColor: "#c0392b",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  logoutText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 5,
   },
   sectionContainer: {
-    flex: 1,
-    marginHorizontal: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    shadowColor: "#2c3e50",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
     textAlign: "center",
     color: "#2c3e50",
-    marginBottom: 20,
-    paddingVertical: 10,
-    backgroundColor: "#D4E3F0",
-    borderRadius: 8,
-    shadowColor: "#34495E",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 6,
+    marginBottom: 15,
   },
   button: {
-    backgroundColor: "#2ecc71",
-    padding: 15,
+    backgroundColor: "#3498db",
+    paddingVertical: 12,
     borderRadius: 8,
     alignItems: "center",
-    marginBottom: 20,
-    shadowColor: "#27ae60",
-    shadowOffset: { width: 0, height: 4 },
+    marginBottom: 10,
+    shadowColor: "#2980b9",
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowRadius: 4,
+    elevation: 3,
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
