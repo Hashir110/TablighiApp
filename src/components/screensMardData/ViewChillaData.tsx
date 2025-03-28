@@ -9,16 +9,14 @@ import {
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
-const view7MahinayBeroon = () => {
+const ViewChillahData = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(
-          collection(db, "sathMahinayBeroon")
-        );
+        const querySnapshot = await getDocs(collection(db, "chilla"));
         const fetchedData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -44,7 +42,7 @@ const view7MahinayBeroon = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>ساتھ مہینے ڈیٹا</Text>
+      <Text style={styles.heading}>چلہ ڈیٹا</Text>
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
@@ -113,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default view7MahinayBeroon;
+export default ViewChillahData;

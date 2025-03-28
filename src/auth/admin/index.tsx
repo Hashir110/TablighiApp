@@ -1,88 +1,134 @@
+
+
+
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons"; // Ensure you have installed @expo/vector-icons
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const AdminScreen = ({ navigation }) => {
-  const screens = [
-    { name: "ViewSaalAndroon", label: "سال اندرون" },
-    { name: "SaalBeroon", label: "سال بیرون" },
-    { name: "view7MahinayBeroon", label: "7 مہینے بیرون" },
-    { name: "Mahinay4", label: "4 مہینے" },
-    { name: "Chilla", label: "چلہ" },
-    { name: "Sehroza", label: "سہ روزہ" },
-    { name: "Mahinay3Mastorat", label: "3 مہینے مستورات" },
-    { name: "ChillaMastorat", label: "چلہ مستورات" },
-    { name: "Din15Mastorat", label: "15 دن مستورات" },
-    { name: "SehrozaMastorat", label: "سہ روزہ مستورات" },
-  ];
-
-  // Logout function (Implement actual logout logic)
   const handleLogout = () => {
     console.log("User logged out");
-    navigation.replace("Login"); // Redirect to login screen
+    navigation.replace("Login");
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: "#f8f9fa", padding: 16 }}>
       {/* Logout Button */}
-      <TouchableOpacity
-        onPress={handleLogout}
-        style={{
-          position: "absolute",
-          top: 25,
-          right: 13,
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 8,
-          backgroundColor: "red",
-          borderRadius: 8,
-        }}
-      >
+      <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
         <MaterialIcons name="logout" size={20} color="white" />
         <Text style={{ color: "white", marginRight: 5, fontWeight: "bold" }}>
-          Logout
+          لاگ آوٹ
         </Text>
       </TouchableOpacity>
+      <ScrollView style={styles.container}>
+        {/* Men's Section */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>مردوں کے لیے</Text>
+          {[
+            { label: "سہ روزہ والے احباب", route: "Sehroza" },
+            { label: "اجتماع", route: "Ijtima" },
+            { label: "چِلّے والے احباب", route: "Chilla" },
+            { label: "چار مہینے والے احباب", route: "CharMahinay" },
+            { label: "سات مہینے بیرون والے احباب", route: "SathMahinay" },
+            { label: "سال اندرون والے احباب", route: "SaalAndroon" },
+          ].map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.button}
+              onPress={() => navigation.navigate(item.route)}
+            >
+              <Text style={styles.buttonText}>{item.label}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-      {/* Heading */}
-      <Text
-        style={{
-          fontSize: 24,
-          fontWeight: "bold",
-          textAlign: "center",
-          marginBottom: 20,
-          marginTop: 40,
-        }}
-      >
-        User View - Members
-      </Text>
-
-      {/* Cards Section */}
-      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-        {screens.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => navigation.navigate(item.name)}
-            style={{
-              backgroundColor: "white",
-              padding: 16,
-              marginVertical: 8,
-              borderRadius: 8,
-              shadowColor: "#000",
-              shadowOpacity: 0.1,
-              shadowOffset: { width: 0, height: 2 },
-              shadowRadius: 4,
-              elevation: 3,
-            }}
-          >
-            <Text style={{ fontSize: 18, fontWeight: "500" }}>
-              {item.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {/* Women's Section */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>مستورات کے لیے</Text>
+          {[
+            { label: "۳ دن مستورات", route: "TeenDin" },
+            { label: "۱۵ دن مستورات", route: "PandraDin" },
+            { label: "۴۰ دن مستورات", route: "ChalisDin" },
+            { label: "۳ مہینے مستورات", route: "TeenMahinayBeroon" },
+          ].map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.button}
+              onPress={() => navigation.navigate(item.route)}
+            >
+              <Text style={styles.buttonText}>{item.label}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f4f4f9",
+    padding: 20,
+  },
+  logoutButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-end",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: "#e74c3c",
+    borderRadius: 8,
+    marginBottom: 25,
+    shadowColor: "#c0392b",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+    top: 15,
+  },
+
+  sectionContainer: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    shadowColor: "#2c3e50",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#2c3e50",
+    marginBottom: 15,
+  },
+  button: {
+    backgroundColor: "#3498db",
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 10,
+    shadowColor: "#2980b9",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
 
 export default AdminScreen;

@@ -19,13 +19,14 @@ interface FormProps {
   heading: string;
   collectionName: string;
   screensNAme: string;
- 
+  
 }
 
-const Form: React.FC<FormProps> = ({
+const FormMastorat: React.FC<FormProps> = ({
   heading,
   collectionName,
   screensNAme,
+ 
 }) => {
   const [name, setName] = useState("");
   const [masjidName, setMasjidName] = useState("");
@@ -75,7 +76,7 @@ const Form: React.FC<FormProps> = ({
 
           <TextInput
             style={styles.input}
-            placeholder="نام"
+            placeholder="محرم کا نام "
             value={name}
             onChangeText={setName}
           />
@@ -87,14 +88,14 @@ const Form: React.FC<FormProps> = ({
           />
           <TextInput
             style={styles.input}
-            placeholder="سال"
+            placeholder="کونسے سال میں لگایا"
             value={year}
             onChangeText={setYear}
             keyboardType="numeric"
           />
           <TextInput
             style={styles.input}
-            placeholder="وقت"
+            placeholder="وقت کتنا لگایا"
             value={time}
             onChangeText={setTime}
           />
@@ -175,4 +176,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Form;
+export default FormMastorat;

@@ -2,7 +2,13 @@ import React from "react";
 import Form from "../addDataForm/form"; // ✅ Capitalized name
 
 const SehrozaScreen: React.FC = () => {
-  return <Form heading="سہ روزہ فارم" collectionName="sehroza" />;
+  return (
+    <Form
+      heading="سہ روزہ فارم"
+      collectionName="sehroza"
+      screensNAme="viewSehroza"
+    />
+  );
 };
 
 export default SehrozaScreen;

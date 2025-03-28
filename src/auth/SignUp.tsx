@@ -9,45 +9,46 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Login = ({ navigation }) => {
+const Signup = ({ navigation }) => {
+    const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     if (!email || !password) {
       Alert.alert("غلطی", "براہ کرم تمام فیلڈز کو پُر کریں۔");
       return;
     }
 
     try {
-      // Retrieve stored user credentials
-      const storedEmail = await AsyncStorage.getItem("userEmail");
-      const storedPassword = await AsyncStorage.getItem("userPassword");
+      // Save user data locally
+            await AsyncStorage.setItem("userEmail", fullName);
 
-      // Check if it's the admin
-      if (email === "admin@gmail.com" && password === "admin123") {
-        Alert.alert("لاگ ان کامیاب", "ایڈمن پینل میں خوش آمدید!");
-        navigation.replace("AdminScreen");
-        return;
-      }
+      await AsyncStorage.setItem("userEmail", email);
+      await AsyncStorage.setItem("userPassword", password);
 
-      // Check if the entered email & password match stored user data
-      if (email === storedEmail && password === storedPassword) {
-        Alert.alert("لاگ ان کامیاب", `خوش آمدید, ${email}!`);
-        navigation.replace("Home");
-      } else {
-        Alert.alert("غلطی", "ای میل یا پاسورڈ غلط ہے۔");
-      }
+      Alert.alert("رجسٹریشن کامیاب", "اب آپ لاگ ان کر سکتے ہیں!");
+
+      // Navigate to login screen
+      navigation.navigate("Login");
+setFullName("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
-      console.error(error);
-      Alert.alert("غلطی", "لاگ ان ناکام۔ دوبارہ کوشش کریں۔");
+      console.error("Signup Error:", error);
+      Alert.alert("غلطی", "رجسٹریشن میں مسئلہ آیا، دوبارہ کوشش کریں۔");
     }
   };
 
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> لاگ ان</Text>
+      <Text style={styles.title}> سائن اپ</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="پورا نام درج کریں"
+        value={fullName}
+        onChangeText={setFullName}
+      />
       <TextInput
         style={styles.input}
         placeholder="ای میل درج کریں"
@@ -62,11 +63,11 @@ const Login = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>لاگ ان کریں</Text>
+      <TouchableOpacity style={styles.button} onPress={handleSignup}>
+        <Text style={styles.buttonText}>سائن اپ کریں</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.replace("SignUp")}>
-        <Text style={styles.linkText}>اکاؤنٹ نہیں ہے؟ سائن اپ کریں</Text>
+      <TouchableOpacity onPress={() => navigation.replace("Login")}>
+        <Text style={styles.linkText}>پہلے ہی اکاؤنٹ ہے؟ لاگ ان کریں</Text>
       </TouchableOpacity>
     </View>
   );
@@ -114,4 +115,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Signup;

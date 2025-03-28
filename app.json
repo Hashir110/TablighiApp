@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TablighiDataApp",
-    "slug": "MyNewProject",
+    "slug": "data-sync",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "yes",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -27,8 +31,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "f2fda0c3-a6d7-4d09-9c8b-a8dd2aec8bed"
+        "projectId": "7a47f077-71be-4145-96a8-a65f45b6db18"
       }
-    }
+    },
+    "owner": "hashir_dev"
   }
 }

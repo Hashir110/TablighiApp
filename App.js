@@ -6,7 +6,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from "./src/components/screensMard/home";
+import Home from "./src/components/home";
 import sehroza from "./src/components/screensMard/sehroza";
 import chilla from "./src/components/screensMard/chilla";
 import charMahiny from "./src/components/screensMard/charMahiny";
@@ -25,6 +25,16 @@ import SplashScreen from "./src/components/splashScreen";
 import AdminScreen from "./src/auth/admin";
 import view7MahinayBeroon from "./src/components/screensMardData/view7MahinayBeroon";
 import form from "./src/components/addDataForm/form";
+import ViewCharMahinay from "./src/components/screensMardData/viewCharMahinay";
+import ViewChillahData from "./src/components/screensMardData/ViewChillaData";
+import ViewIjtimaData from "./src/components/screensMardData/ViewIjtimaData";
+import ViewSehrozaData from "./src/components/screensMardData/ViewSehroza";
+import ViewTeenDin from "./src/components/screensMastoraatData/ViewTeenDin";
+
+import ViewChalisDin from "./src/components/screensMastoraatData/ViewChalisDin";
+import ViewTeenMahinay from "./src/components/screensMastoraatData/ViewTeenMahinay";
+import Signup from "./src/auth/SignUp";
+import ViewPandraDin from "./src/components/screensMastoraatData/ViewPandraDin"
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -36,6 +46,7 @@ export default function App() {
           initialRouteName="Splash"
         >
           <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="SignUp" component={Signup} />
           <Stack.Screen
             name="Login"
             component={Login}
@@ -114,6 +125,46 @@ export default function App() {
           <Stack.Screen
             name="view7MahinayBeroon"
             component={view7MahinayBeroon}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewCharMahinay"
+            component={ViewCharMahinay}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewChilla"
+            component={ViewChillahData}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewIjtima"
+            component={ViewIjtimaData}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewSehroza"
+            component={ViewSehrozaData}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewTeenDin"
+            component={ViewTeenDin}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewPandraDin"
+            component={ViewPandraDin}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewChalisDin"
+            component={ViewChalisDin}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="viewTeenMahinay"
+            component={ViewTeenMahinay}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
